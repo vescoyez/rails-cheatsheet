@@ -11,7 +11,7 @@
 ## Authentication (with Devise)
 
 Add to Gemfile
-```
+```ruby
 gem 'devise'
 ```
 
@@ -81,3 +81,40 @@ class PagesController < ApplicationController
   end
 end
 ```
+
+## Model
+
+Create a model
+```
+$ rails g model MODEL_NAME ATTRIBUTE:TYPE ATTRIBUTE:TYPE
+```
+- `MODEL_NAME` : replace it by your model name (Capital letter & singular)
+- `ATTRIBUTE` : replace it by the model attribute
+- `TYPE` : replace it by the attribute type : 
+  * `string`
+  * `text`
+  * `integer`
+  * `float`
+  * `date`
+  * `datetime`
+  * `array`
+
+Migrate DB
+```
+$ rake db:migrate
+```
+
+Destroy a model
+```
+$ rails destroy model MODEL_NAME
+```
+
+Add attributes to model
+```
+$ rails g migration AddAttributeToModels
+```
+- `Attribute` : CamelCase & singular
+- `Models`: Model Name plurial
+
+
+TODO rake db task
