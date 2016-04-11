@@ -1,5 +1,12 @@
 # Rails Cheatshit
 
+## Table of Contents
+
+- [New App](#new-app)
+- [Model](#model)
+- [DB Tasks](#db-tasks)
+- [Authentication (with Devise)](#authentication-with-devise)
+
 ## New App
 
 `$ rails new -T --database postgresql YOUR_APP_NAME`
