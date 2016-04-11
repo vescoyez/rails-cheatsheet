@@ -4,6 +4,8 @@
 
 - [New App](#new-app)
 - [Model](#model)
+- [Routes](#routes)
+- [Controller](#controller)
 - [DB Tasks](#db-tasks)
 - [Authentication (with Devise)](#authentication-with-devise)
 
@@ -19,9 +21,9 @@
 
 Create a model
 ```
-$ rails g model *model_name* *attribute*:*type* *attribute*:*type*
+$ rails g model *object_name* *attribute*:*type* *attribute*:*type*
 ```
-- `*model_name*` : replace it by your model name (Capital letter & singular)
+- `*object_name*` : replace it by your model name (Capital letter & singular)
 - `*attribute*` : replace it by the model attribute
 - `*type*` : replace it by the attribute type : 
   * `string`
@@ -39,68 +41,75 @@ $ rake db:migrate
 
 Destroy a model
 ```
-$ rails destroy model *model_name*
+$ rails destroy model *object_name*
 ```
 
 Add attributes to model
 ```
-$ rails g migration Add*Attribute*To*Model*s
+$ rails g migration Add*Attribute*To*ObjectName*s
 ```
 - `*Attribute*` : CamelCase & singular
-- `*Model*`: Model Name plurial
+- `*ObjectName*`: Model Name plurial
 
 Remove attributes from model
 ```
-$ rails g migration Remove*Attribute*From*Model*s
+$ rails g migration Remove*Attribute*From*ObjectName*s
 ```
 - `*Attribute*` : CamelCase & singular
-- `*Model*`: Model Name, CamelCase & plurial
+- `*ObjectName*`: Model Name, CamelCase & plurial
 
-### Create the 7 CRUD routes
+## Routes
 
 Add to config/routes.rb
 ```ruby
 Rails.application.routes.draw do
-  resources :*model*s
+  resources :*object_name*s
 end
 ```
 
-If you don't need all of the
+If you don't need all of them
 ```ruby
 Rails.application.routes.draw do
-  resources :*model*s, only: [:create, :index, :destroy]
+  resources :*object_name*s, only: [:create, :index, :destroy]
 end
 ```
 or
 ```ruby
 Rails.application.routes.draw do
-  resources :*model*s, except: [:create, :index, :destroy]
+  resources :*object_name*s, except: [:create, :index, :destroy]
 end
+```
+
+## Controller
+
+Create a model
+```
+$ rails g controller *object_name*
 ```
 
 7 Instance methods
 ```ruby
-# app/controller/models_controller.rb
-class *Model*sController < ApplicationController
-  def index         # GET /*model*s
+# app/controller/*object_name*s_controller.rb
+class *ObjectName*sController < ApplicationController
+  def index         # GET /*object_name*s
   end
 
-  def show          # GET /*model*s/:id
+  def show          # GET /*object_name*s/:id
   end
 
-  def new           # GET /*model*s/new
+  def new           # GET /*object_name*s/new
   end
 
-  def create        # POST /*model*s
+  def create        # POST /*object_name*s
   end
 
-  def edit          # GET /*model*s/:id/edit
+  def edit          # GET /*object_name*s/:id/edit
   end
 
-  def update        # PATCH /*model*s/:id
+  def update        # PATCH /*object_name*s/:id
   end
 
-  def destroy       # DELETE /*model*s/:id
+  def destroy       # DELETE /*object_name*s/:id
   end
 end
 ```
@@ -108,38 +117,38 @@ end
 Get all object instances
 ```ruby
  def index
-  @*model* = *Model*.all
+  @*object_name* = *ObjectName*.all
  end
 ```
 
 Get 1 object instance
 ```ruby
  def show
-  @*model* = *Model*.find(params[:id])
+  @*object_name* = *ObjectName*.find(params[:id])
  end
 ```
 
 Create & update
 ```ruby
-class *Model*sController < ApplicationController
+class *ObjectName*sController < ApplicationController
  def create
-  @*model* = *Model*.new(*model*_params)
-  @*model*.save
+  @*object_name* = *ObjectName*.new(*object_name*_params)
+  @*object_name*.save
   
-  redirect_to *model*_path(@*model*)
+  redirect_to *object_name*_path(@*object_name*)
  end
 
  def update
-  @*model* = *Model*.find(params[:id])
-  @*model*.update(*model*_params)
+  @*object_name* = *ObjectName*.find(params[:id])
+  @*object_name*.update(*object_name*_params)
   
-  redirect_to *model*_path(@*model*)
+  redirect_to *object_name*_path(@*object_name*)
  end
 
  private
 
- def *model*_params
-  params.require(:*model*).permit(:*attribute*, :*other_attribute*)
+ def *object_name*_params
+  params.require(:*object_name*).permit(:*attribute*, :*other_attribute*)
  end
 end
 ```
@@ -147,12 +156,12 @@ end
 Delete
 
 ```ruby
-class *Model*sController < ApplicationController
+class *ObjectName*sController < ApplicationController
   def destroy
-    @*model* = *Model*.find(params[:id])
-    @*model*.destroy
+    @*object_name* = *ObjectName*.find(params[:id])
+    @*object_name*.destroy
 
-    redirect_to *model*s_path
+    redirect_to *object_name*s_path
   end
 end
 ```
