@@ -19,11 +19,11 @@
 
 Create a model
 ```
-$ rails g model MODEL_NAME ATTRIBUTE:TYPE ATTRIBUTE:TYPE
+$ rails g model *model_name* *attribute*:*type* *attribute*:*type*
 ```
-- `MODEL_NAME` : replace it by your model name (Capital letter & singular)
-- `ATTRIBUTE` : replace it by the model attribute
-- `TYPE` : replace it by the attribute type : 
+- `*model_name*` : replace it by your model name (Capital letter & singular)
+- `*attribute*` : replace it by the model attribute
+- `*type*` : replace it by the attribute type : 
   * `string`
   * `text`
   * `integer`
@@ -39,15 +39,123 @@ $ rake db:migrate
 
 Destroy a model
 ```
-$ rails destroy model MODEL_NAME
+$ rails destroy model *model_name*
 ```
 
 Add attributes to model
 ```
-$ rails g migration AddAttributeToModels
+$ rails g migration Add*Attribute*To*Model*s
 ```
-- `Attribute` : CamelCase & singular
-- `Models`: Model Name plurial
+- `*Attribute*` : CamelCase & singular
+- `*Model*`: Model Name plurial
+
+Remove attributes from model
+```
+$ rails g migration Remove*Attribute*From*Model*s
+```
+- `*Attribute*` : CamelCase & singular
+- `*Model*`: Model Name, CamelCase & plurial
+
+### Create the 7 CRUD routes
+
+Add to config/routes.rb
+```ruby
+Rails.application.routes.draw do
+  resources :*model*s
+end
+```
+
+If you don't need all of the
+```ruby
+Rails.application.routes.draw do
+  resources :*model*s, only: [:create, :index, :destroy]
+end
+```
+or
+```ruby
+Rails.application.routes.draw do
+  resources :*model*s, except: [:create, :index, :destroy]
+end
+```
+
+7 Instance methods
+```ruby
+# app/controller/models_controller.rb
+class *Model*sController < ApplicationController
+  def index         # GET /*model*s
+  end
+
+  def show          # GET /*model*s/:id
+  end
+
+  def new           # GET /*model*s/new
+  end
+
+  def create        # POST /*model*s
+  end
+
+  def edit          # GET /*model*s/:id/edit
+  end
+
+  def update        # PATCH /*model*s/:id
+  end
+
+  def destroy       # DELETE /*model*s/:id
+  end
+end
+```
+
+Get all object instances
+```ruby
+ def index
+  @*model* = *Model*.all
+ end
+```
+
+Get 1 object instance
+```ruby
+ def show
+  @*model* = *Model*.find(params[:id])
+ end
+```
+
+Create & update
+```ruby
+class *Model*sController < ApplicationController
+ def create
+  @*model* = *Model*.new(*model*_params)
+  @*model*.save
+  
+  redirect_to *model*_path(@*model*)
+ end
+
+ def update
+  @*model* = *Model*.find(params[:id])
+  @*model*.update(*model*_params)
+  
+  redirect_to *model*_path(@*model*)
+ end
+
+ private
+
+ def *model*_params
+  params.require(:*model*).permit(:*attribute*, :*other_attribute*)
+ end
+end
+```
+
+Delete
+
+```ruby
+class *Model*sController < ApplicationController
+  def destroy
+    @*model* = *Model*.find(params[:id])
+    @*model*.destroy
+
+    redirect_to *model*s_path
+  end
+end
+```
 
 ## DB tasks
 
