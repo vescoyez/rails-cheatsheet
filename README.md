@@ -23,9 +23,9 @@ $ rails new -T --database postgresql YOUR_APP_NAME
 
 Create a model
 ```
-$ rails g model *object_name* *attribute*:*type* *attribute*:*type*
+$ rails g model *ObjectName* *attribute*:*type* *attribute*:*type*
 ```
-- `*object_name*` : replace it by your model name (Capital letter & singular)
+- `*ObjectName*` : replace it by your model name (Capital letter & singular)
 - `*attribute*` : replace it by the model attribute
 - `*type*` : replace it by the attribute type : 
   * `string`
@@ -97,7 +97,7 @@ $ rake routes
 
 Create a controller
 ```
-$ rails g controller *object_name*
+$ rails g controller *object_name*s
 ```
 
 7 Instance methods
