@@ -35,6 +35,12 @@ $ rails g model *object_name* *attribute*:*type* *attribute*:*type*
   * `date`
   * `datetime`
   * `array`
+  * `references`
+
+if `references` add has_many :*object_name*s, *params*
+
+*params*:
+- `dependent: :destroy`: destroy the referent instance if this one is deleted
 
 Migrate DB
 ```
@@ -48,7 +54,7 @@ $ rails destroy model *object_name*
 
 Add attributes to model
 ```
-$ rails g migration Add*Attribute*To*ObjectName*s
+$ rails g migration Add*Attribute*To*ObjectName*s *attribute*:*type* *attribute*:*type*
 ```
 - `*Attribute*` : CamelCase & singular
 - `*ObjectName*`: Model Name plurial
@@ -80,6 +86,11 @@ or
 Rails.application.routes.draw do
   resources :*object_name*s, except: [:create, :index, :destroy]
 end
+```
+
+Verify routes
+```
+$ rake routes
 ```
 
 ## Controller
