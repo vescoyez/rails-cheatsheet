@@ -11,7 +11,9 @@
 
 ## New App
 
-`$ rails new -T --database postgresql YOUR_APP_NAME`
+```
+$ rails new -T --database postgresql YOUR_APP_NAME
+```
 
 - `-T` : remove tests
 - `--database postgresql` : use postgresql database
@@ -82,7 +84,7 @@ end
 
 ## Controller
 
-Create a model
+Create a controller
 ```
 $ rails g controller *object_name*
 ```
