@@ -7,7 +7,68 @@
 - `-T` : remove tests
 - `--database postgresql` : use postgresql database
 - `YOUR_APP_NAME` : replace it with your app name
- 
+
+## Model
+
+Create a model
+```
+$ rails g model MODEL_NAME ATTRIBUTE:TYPE ATTRIBUTE:TYPE
+```
+- `MODEL_NAME` : replace it by your model name (Capital letter & singular)
+- `ATTRIBUTE` : replace it by the model attribute
+- `TYPE` : replace it by the attribute type : 
+  * `string`
+  * `text`
+  * `integer`
+  * `float`
+  * `date`
+  * `datetime`
+  * `array`
+
+Migrate DB
+```
+$ rake db:migrate
+```
+
+Destroy a model
+```
+$ rails destroy model MODEL_NAME
+```
+
+Add attributes to model
+```
+$ rails g migration AddAttributeToModels
+```
+- `Attribute` : CamelCase & singular
+- `Models`: Model Name plurial
+
+## DB tasks
+
+Drop the database (lose all your data!)
+```
+$ rake db:drop
+```
+
+Create the database with an empty schema
+```
+$ rake db:create
+```
+
+Run pending migrations on the database schema
+```
+$ rake db:migrate
+```
+
+Revert the last migration
+```
+$ rake db:rollback
+```
+
+Drop database + replay all migration
+```
+$ rake db:reset
+```
+
 ## Authentication (with Devise)
 
 Add to Gemfile
@@ -81,40 +142,3 @@ class PagesController < ApplicationController
   end
 end
 ```
-
-## Model
-
-Create a model
-```
-$ rails g model MODEL_NAME ATTRIBUTE:TYPE ATTRIBUTE:TYPE
-```
-- `MODEL_NAME` : replace it by your model name (Capital letter & singular)
-- `ATTRIBUTE` : replace it by the model attribute
-- `TYPE` : replace it by the attribute type : 
-  * `string`
-  * `text`
-  * `integer`
-  * `float`
-  * `date`
-  * `datetime`
-  * `array`
-
-Migrate DB
-```
-$ rake db:migrate
-```
-
-Destroy a model
-```
-$ rails destroy model MODEL_NAME
-```
-
-Add attributes to model
-```
-$ rails g migration AddAttributeToModels
-```
-- `Attribute` : CamelCase & singular
-- `Models`: Model Name plurial
-
-
-TODO rake db task
