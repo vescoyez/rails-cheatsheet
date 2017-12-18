@@ -1,4 +1,4 @@
-# Rails Cheatshit
+# Rails Cheatsheet
 
 ## Table of Contents
 
